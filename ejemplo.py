@@ -51,7 +51,7 @@ with DAG(
         schema="PUBLIC",
         table=REDSHIFT_TABLE,
         copy_options=['csv'],
-        task_id='transfer_s3_to_redshift',
+        task_id='transfer_s3_to_redshift'
     )
 
 
@@ -65,8 +65,7 @@ with DAG(
 
     branching = BranchPythonOperator(
         task_id = 'branching',
-        python_callable = is_greater_than_five,
-        provide_context = True,
+        python_callable = is_greater_than_five
     )
 
 
@@ -80,5 +79,13 @@ with DAG(
             pet_type VARCHAR NOT NULL,
             birth_date DATE NOT NULL,
             OWNER VARCHAR NOT NULL);
-            """,
-        )
+            """
+    )
+
+    def print_context(ds, **kwargs):        
+        print("This is printed in the logs")
+
+    run_this = PythonOperator(
+        task_id='print_task',
+        python_callable=print_context
+    )

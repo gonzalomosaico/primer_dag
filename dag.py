@@ -26,8 +26,8 @@ def getData():
 
 data = getData()
 
-con=psycopg2.connect(dbname="mosaico", host="10.20.3.63",  
-    port="5439", user="galarcon", password="gA072021*!a")
+con=psycopg2.connect(dbname="*******", host="**********",  
+    port="*****", user="******", password="*********")
 cur = con.cursor()
 
 
